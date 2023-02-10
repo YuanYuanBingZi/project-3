@@ -13,10 +13,11 @@ The vocabulary word list is fixed for one invocation of the server, so multiple 
 `flask_vocab.py` runs the anagram game, with the template `vocab.html`. This example uses a conventional interaction through a form, interacting only when the user submits the form. The vocabulary and anagram are currently loaded using basic JINJA. What you're supposed to do is to change the form interaction into an AJAX interaction (using JQuery).
 
 ## Tasks
-###Name: Tong Guan
-###Info: Project 3 Vocabulary Anagram Game
+### Name: Tong Guan
+### Info: Project 3 Vocabulary Anagram Game
 
-###This project is about replace the flask and jinja framework with JQuery and asynchronous requests. When we get the request of what people type in our form, we won't need to submit the form anymore, once keystroke, we will send the message and feedback in time. We wrote Javascript code inside html to realize this function.
+### 
+This project is about replace the flask and jinja framework with JQuery and asynchronous requests. When we get the request of what people type in our form, we won't need to submit the form anymore, once keystroke, we will send the message and feedback in time. We wrote Javascript code inside html to realize this function.
 
 ## FAQ
 ### What is `src`?
