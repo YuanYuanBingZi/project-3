@@ -77,27 +77,44 @@
                   <label for="attempt">Word:</label>
                   <input id="attempt" name="attempt" type="text" width="15"
                      autocomplete="off"  autofocus />
-                  <input type="submit" name="try" />
                </form>
             </div>
          </div>
+         <p id="response"> </p>
+         <!-- JavaScript will insert text here -->
+         <script>
+            //// Suppress normal form submission
+            $("#entry").submit( function(event) {
+               event.preventDefault();
+              });
+            
+            $("#attempt").keyup(function(event) {
+               var txt = $("#attempt").val();  // Current content of the input field
+               var keycode = event.which;      // They key that just went up
+               var letter = String.fromCharCode(keycode);
+            
+               if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
+
+            $.getJSON( "/_check", { text: txt },
+               function(data) {
+               message = data.result.message;
+               found = data.result.found;
+               success = data.result.success;
+               
+               if (success){
+                  window.location.replace("success.html")}
+               else if (found){
+                  $("#response").html(message);
+                  $("#attempt").val("");}
+               else{
+                  $("#response").html(message);}
+               
+               }
+               
+        );
+});
+        </script>
          <br />
-         {% if session.matches|length is not equalto 0  %}
-         <h2>You found </h2>
-         <p id="results">
-            {% for match in session.matches %}
-            {{ match }}
-            {% endfor %}
-         </p>
-         {% endif %}
-         {% with messages = get_flashed_messages() %}
-         {% if messages %}
-         <!-- Mismatch, already found, etc. "flashed" from Python -->
-         {% for message in messages %}
-         <p class="message">{{ message }}</p>
-         {% endfor %}
-         {% endif %}
-         {% endwith %}
       </div>
       <!-- container -->
    </body>
